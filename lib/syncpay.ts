@@ -21,7 +21,7 @@ function webhookUrl() {
 }
 
 export async function createCashIn(input: CashInInput) {
-  const res = await fetch(`${BASE}/cash-in , {
+  const res = await fetch(`${BASE}/cash-in`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({
@@ -44,7 +44,7 @@ export async function createCashOut(input: {
   amountCts: number; pixKey: string; pixType: "CPF" | "CNPJ" | "EMAIL" | "PHONE" | "EVP";
   name: string; document: string;
 }) {
-  const res = await fetch(`${BASE}/cash-out , {
+  const res = await fetch(`${BASE}/cash-out`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({
