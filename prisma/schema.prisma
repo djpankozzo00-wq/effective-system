@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  passHash  String
+  name      String   @default("Administrador")
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id         String   @id @default(cuid())
+  tgId       String   @unique
+  username   String?
+  name       String
+  avatarUrl  String?
+  balanceCts Int      @default(0)
+  isBlocked  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  reviews    Review[]
+  movements  WalletMovement[]
+  deposits   Deposit[]
+}
+
+model Category {
+  id     String  @id @default(cuid())
+  name   String
+  icon   String?
+  stores Store[]
+}
+
+model Store {
+  id            String   @id @default(cuid())
+  type          String   @default("maps_review")
+  name          String
+  categoryId    String?
+  category      Category? @relation(fields: [categoryId], references: [id])
+  imageUrl      String?
+  images        String[]
+  rewardCts     Int      @default(0)
+  rewardLocal   Decimal  @default(0) @db.Decimal(12, 2)
+  currencyCode  String   @default("BRL")
+  fxRateToBrl   Decimal  @default(1) @db.Decimal(12, 6)
+  minutes       Int      @default(12)
+  slotsTotal    Int      @default(100)
+  slotsUsed     Int      @default(0)
+  countryCode   String   @default("BR")
+  city          String?
+  region        String?
+  address       String?
+  rating        Decimal  @default(4.5) @db.Decimal(2, 1)
+  reviewsCount  Int      @default(0)
+  sourceUrl     String?
+  tags          String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  reviews       Review[]
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  publicId  String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  storeId   String
+  store     Store    @relation(fields: [storeId], references: [id])
+  status    String   @default("pending")
+  step      Int      @default(0)
+  stars     Int?
+  comment   String?
+  createdAt DateTime @default(now())
+}
+
+model WalletMovement {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String
+  amountCts Int
+  note      String?
+  createdAt DateTime @default(now())
+}
+
+model Deposit {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  amountCts  Int
+  status     String   @default("pending")
+  provider   String   @default("syncpay")
+  pixCode    String?
+  identifier String?  @unique
+  paidAt     DateTime?
+  createdAt  DateTime @default(now())
+}
+
+model Withdrawal {
+  id         String   @id @default(cuid())
+  publicId   String   @unique
+  userId     String
+  amountCts  Int
+  feeCts     Int      @default(0)
+  pixKey     String
+  pixKeyType String
+  status     String   @default("pending")
+  createdAt  DateTime @default(now())
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  publicId  String   @unique
+  userId    String
+  body      String
+  imageUrl  String?
+  createdAt DateTime @default(now())
+}
+
+model Setting {
+  key   String @id
+  value String
+}

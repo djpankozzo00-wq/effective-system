@@ -1,0 +1,2 @@
+import { prisma } from "@/lib/db";
+export default async function CategoriesPage(){const rows=await prisma.category.findMany({include:{_count:{select:{stores:true}}},orderBy:{name:"asc"}});return <><h1>Categorias</h1><div className="grid">{rows.map(c=><div className="card" key={c.id}><b>{c.icon??"📁"} {c.name}</b><p className="muted small">{c._count.stores} lojas</p></div>)}</div>{!rows.length&&<div className="card muted">Nenhuma categoria cadastrada.</div>}</>}

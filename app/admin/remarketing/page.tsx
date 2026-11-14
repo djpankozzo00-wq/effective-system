@@ -1,0 +1,1 @@
+export default function RemarketingPage(){return <><h1>Remarketing</h1><div className="card"><p className="muted">O cron está previsto para executar a cada 5 minutos. A campanha e os critérios de envio precisam ser configurados antes de ativar mensagens.</p></div></>}

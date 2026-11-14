@@ -1,0 +1,2 @@
+import { prisma } from "@/lib/db";
+export default async function AdminCommunity(){const posts=await prisma.post.findMany({orderBy:{createdAt:"desc"},take:50});return <><h1>Comunidade</h1><div className="stack">{posts.map(p=><div className="card" key={p.id}>{p.body}<p className="muted small">{p.createdAt.toLocaleString("pt-BR")}</p></div>)}{!posts.length&&<div className="card muted">Ainda não há publicações.</div>}</div></>}

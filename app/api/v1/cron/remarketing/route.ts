@@ -1,0 +1,2 @@
+import { NextRequest,NextResponse } from "next/server";
+export async function GET(req:NextRequest){if(!process.env.CRON_SECRET||req.headers.get("authorization")!==`Bearer ${process.env.CRON_SECRET}`)return NextResponse.json({error:"Não autorizado"},{status:401});return NextResponse.json({ok:true,processed:0,message:"Remarketing aguardando configuração do provedor e das regras de consentimento."});}

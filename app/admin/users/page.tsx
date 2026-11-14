@@ -1,0 +1,2 @@
+import { prisma } from "@/lib/db";import { formatBRL } from "@/lib/money";
+export default async function UsersPage(){const users=await prisma.user.findMany({orderBy:{createdAt:"desc"},take:100});return <><h1>Usuários</h1><div className="stack">{users.map(u=><div className="card" key={u.id}><b>{u.name}</b><p className="muted small">@{u.username??"sem usuário"} · Telegram {u.tgId}</p><span className="tag">{formatBRL(u.balanceCts)}</span></div>)}{!users.length&&<div className="card muted">Nenhum usuário cadastrado.</div>}</div></>}

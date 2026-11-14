@@ -1,0 +1,2 @@
+import { prisma } from "@/lib/db";
+export default async function StoresPage(){const rows=await prisma.store.findMany({orderBy:{createdAt:"desc"},take:50});return <><h1>Lojas e missões</h1><div className="stack">{rows.map(s=><div className="card" key={s.id}><b>{s.name}</b><p className="muted small">{s.type} · {s.city??"Sem cidade"} · {s.isActive?"Ativa":"Inativa"}</p></div>)}{!rows.length&&<div className="card muted">Nenhuma loja cadastrada.</div>}</div></>}

@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function CommunityPage(){return <><header className="top"><Link href="/" className="brand">helix<span>.</span></Link><span className="pill">Comunidade</span></header><section className="hero"><h1>Comunidade Helix</h1><p className="muted">Novidades, avisos e conversas dos participantes.</p></section><div className="card muted">As publicações aparecerão aqui quando a comunidade for ativada.</div></>}

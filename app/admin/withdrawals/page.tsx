@@ -1,0 +1,2 @@
+import { prisma } from "@/lib/db";import { formatBRL } from "@/lib/money";
+export default async function WithdrawalsPage(){const rows=await prisma.withdrawal.findMany({orderBy:{createdAt:"desc"},take:100});return <><h1>Saques</h1><div className="stack">{rows.map(w=><div className="card" key={w.id}><b>{formatBRL(w.amountCts)}</b><p className="muted small">{w.pixKeyType} · {w.pixKey} · {w.status}</p></div>)}{!rows.length&&<div className="card muted">Nenhum saque solicitado.</div>}</div></>}

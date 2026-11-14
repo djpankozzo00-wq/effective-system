@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function WalletPage(){return <><header className="top"><Link href="/" className="brand">helix<span>.</span></Link><span className="pill">Carteira</span></header><section className="card"><p className="muted">Saldo disponível</p><div className="metric">R$ 0,00</div><p className="small muted">O saldo será exhibido após a autenticação da sua conta.</p></section><h2 className="section-title">Movimentações</h2><div className="card muted">Nenhuma movimentação disponível.</div></>}
