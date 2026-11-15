@@ -23,4 +23,3 @@ Configure todas as variáveis do `.env.example` nas Environment Variables. Confi
 - A integração SyncPay deve ser validada com a documentação e credenciais oficiais antes de produção.
 - O webhook atual valida o segredo no caminho e credita depósitos de forma transacional/idempotente; confirme também a assinatura oficial do provedor, se disponível.
 - O módulo de Telegram Mini App, fluxos completos de missões, criação de depósitos/saques, remarketing e publicação de posts ainda precisam ser conectados às regras finais do produto.
-- `scripts/mirror-assets.sh` só deve ser executado se houver autorização para reutilizar os recursos da origem.
