@@ -14,6 +14,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="pt-BR">
       <body>
         <Script src="/assets/js/local-img.js" strategy="beforeInteractive" />
+        <Script src="/assets/js/sounds.js" strategy="afterInteractive" />
         {children}
       </body>
     </html>
