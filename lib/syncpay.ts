@@ -17,7 +17,7 @@ function webhookUrl() {
   const app = process.env.APP_URL;
   const secret = process.env.SYNCPAY_WEBHOOK_SECRET;
   if (!app || !secret) throw new Error("APP_URL e SYNCPAY_WEBHOOK_SECRET precisam estar configurados.");
-  return `${app.replace(/\\/$/, "")}/api/webhooks/syncpay/${secret}`;
+  return `${app.replace(/\/$/, "")}/api/webhooks/syncpay/${secret}`;
 }
 
 export async function createCashIn(input: CashInInput) {
