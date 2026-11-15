@@ -2,5 +2,13 @@
   "crons": [
     { "path": "/api/v1/cron/expire-deposits", "schedule": "*/10 * * * *" },
     { "path": "/api/v1/cron/remarketing", "schedule": "*/5 * * * *" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
   ]
 }
