@@ -4,13 +4,17 @@ Aplicação Next.js 15 com Prisma/PostgreSQL, painel administrativo, base de car
 
 ## Desenvolvimento
 1. `npm install`
-2. Copie `.env.example` para `.env` e preencha as variáveis.
-3. `npx prisma generate`
-4. `npm run db:push`
-5. `npm run seed`
-6. `npm run dev`
+2. `npm run assets:sync` para baixar os arquivos visuais e recursos estáticos de `helixjunxgamer.club` para `public/assets`.
+3. Copie `.env.example` para `.env` e preencha as variáveis.
+4. `npx prisma generate`
+5. `npm run db:push`
+6. `npm run seed`
+7. `npm run dev`
 
 O seed exige `ADMIN_USERNAME` e `ADMIN_PASSWORD` (mínimo de 12 caracteres).
+
+## Recursos estáticos
+O sincronizador baixa os 10 arquivos de imagem definidos em `window.MAPSOFFICE`, além dos CSS e scripts da origem. A configuração local `public/assets/js/local-img.js` é mantida separada e não é sobrescrita. A sincronização é manual por padrão; execute `npm run assets:sync` antes do build quando quiser atualizar os recursos.
 
 ## Deploy na Vercel
 Configure todas as variáveis do `.env.example` nas Environment Variables. Configure também `CRON_SECRET`. Depois faça o deploy e execute `npm run db:push` em ambiente controlado.
