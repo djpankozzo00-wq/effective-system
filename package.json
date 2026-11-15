@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "db:push": "prisma db push",
-    "seed": "tsx prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts",
+    "assets:sync": "bash scripts/mirror-assets.sh"
   },
   "dependencies": {
     "@prisma/client": "^6.1.0",
